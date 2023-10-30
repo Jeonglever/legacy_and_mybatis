@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						https://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+<!-- classpath : legacyAndMyBatis/src/main/java (or) resources/ -->
+<!-- DB 설정을 참조할 수 있도록 가져온다. -->
+<context:property-placeholder location="classpath:connectionInfo.properties"/>
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	<property name="url" value="${url}" />
+	<property name="username" value="C##MYBATIS" />
+	<property name="password" value="MYBATIS" />
+</bean>
+
+<!-- mybatis SqlSessionFactoryBean -->
+<!-- sessionFactoryBean : 데이터베이스와의 연결과 SQL 실행에 대한 모든 것을 가진 객체
+	 이것이 DataSource를 참조해 MyBatis와 Oracle 서버를 연동시킨다. -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource" />
+	<property name="configLocation" value="classpath:mybatis-config.xml" /> <!-- mybatis 설정 경로 찾기 -->
+    <property name="mapperLocations" value="classpath:mapper/*.xml" /> <!-- mapper 경로 찾기 -->
+</bean>
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+</bean>
 		
 </beans>

@@ -1,22 +1,33 @@
-package com.spring.legacyAndMyBatis;
+package com.spring.legacyAndMyBatis.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.spring.legacyAndMyBatis.dto.BoardDTO;
+import com.spring.legacyAndMyBatis.service.BoardService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	@Autowired
+	BoardService boardService;
+	
+	private MessageSource messageSource;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -33,6 +44,12 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		
+		List<BoardDTO> board = boardService.select();
+		
+		model.addAttribute("list", boardService.select());
+		
+		logger.info("board : ", boardService.select());
 		
 		return "home";
 	}
