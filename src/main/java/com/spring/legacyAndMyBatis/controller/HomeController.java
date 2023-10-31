@@ -47,9 +47,15 @@ public class HomeController {
 		
 		List<BoardDTO> board = boardService.select();
 		
-		model.addAttribute("list", boardService.select());
+		if (board != null && board.size() > 0){
+			model.addAttribute("board", boardService.select());
+		}
+		for ( BoardDTO dto : board) {
+			System.err.println(dto.getBoardContent());
+			logger.info(dto.getBoardContent());
+		}
 		
-		logger.info("board : ", boardService.select());
+		
 		
 		return "home";
 	}
