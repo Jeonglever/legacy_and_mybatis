@@ -18,4 +18,9 @@ public class BoardService {
 		return boardDao.select();
 	}
 
+	public void insert(BoardDTO dto) {
+		boardDao.insert(dto);
+		
+	}
+
 }

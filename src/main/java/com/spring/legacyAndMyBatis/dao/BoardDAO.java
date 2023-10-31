@@ -27,4 +27,9 @@ public class BoardDAO {
 		return sql.selectList(NAMESPACE + "select");
 	}
 
+	public int insert(BoardDTO dto) {
+		return sql.insert(NAMESPACE + "insert", dto);
+		
+	}
+
 }
