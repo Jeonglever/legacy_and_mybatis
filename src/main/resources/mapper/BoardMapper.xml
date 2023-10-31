@@ -11,5 +11,13 @@
  	<select id="select" resultType="com.spring.legacyAndMyBatis.dto.BoardDTO">
  		SELECT * FROM BOARD ORDER BY BOARDNO DESC
  	</select>
+ 	
+  	<!-- 등록 -->
+ 	<insert id="insert" parameterType="com.spring.legacyAndMyBatis.dto.BoardDTO">
+ 		INSERT INTO BOARD
+ 					(USERID, BOARDNO, BOARDCONTENT, BOARDTITLE)
+ 					VALUES
+ 					(#{userId}, BOARDNO_SEQ.NEXTVAL, #{boardContent}, #{boardTitle})
+ 	</insert>
 	
 </mapper>
