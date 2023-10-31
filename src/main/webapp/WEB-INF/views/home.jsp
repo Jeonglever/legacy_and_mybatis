@@ -8,21 +8,12 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!
+<h1 align="center">
+	Hello world! <br/>
+	마이바티스로 CRUD 하며 놀자~!
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-<c:choose>
-	<c:when test = "${board != null}">
-	<c:forEach items="${board}" var="data">
-<h1> ${data.boardContent} ㅁㅁ</h1>
-</c:forEach>
-</c:when>
-<c:otherwise>
-${data.boardContent}
-내용이 없습니다.
-</c:otherwise>
-</c:choose>
+<P align="center"><a href="board">게시판 바로가기</a></P>
+<P align="center">현재 시각은 ${serverTime}.</P>
 </body>
 </html>

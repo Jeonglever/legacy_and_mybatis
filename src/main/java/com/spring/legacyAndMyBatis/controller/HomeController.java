@@ -45,17 +45,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		List<BoardDTO> board = boardService.select();
-		
-		if (board != null && board.size() > 0){
-			model.addAttribute("board", boardService.select());
-		}
-		for ( BoardDTO dto : board) {
-			System.err.println(dto.getBoardContent());
-			logger.info(dto.getBoardContent());
-		}
-		
-		
 		
 		return "home";
 	}
