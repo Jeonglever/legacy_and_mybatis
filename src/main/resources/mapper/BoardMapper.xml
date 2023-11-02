@@ -19,5 +19,16 @@
  					VALUES
  					(#{userId}, BOARDNO_SEQ.NEXTVAL, #{boardContent}, #{boardTitle})
  	</insert>
+ 	
+ 	<!-- 상세조회 -->
+ 	<select id="selectOne" resultType="com.spring.legacyAndMyBatis.dto.BoardDTO">
+ 		SELECT * FROM BOARD WHERE BOARDNO = #{boardNo}
+ 	</select>
 	
+ 	<!-- 조회수 증가 ㅜㅜ -->
+ 	<update id="countUpdate" parameterType="int">
+ 		UPDATE BOARD SET BOARDCOUNT = BOARDCOUNT+1 WHERE BOARDNO = #{boardNo}
+ 	</update>
+ 	
+ 		
 </mapper>

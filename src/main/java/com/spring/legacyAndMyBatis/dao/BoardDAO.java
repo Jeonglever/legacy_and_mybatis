@@ -32,4 +32,13 @@ public class BoardDAO {
 		
 	}
 
+	public BoardDTO selectOne(int boardNo) {
+		return sql.selectOne(NAMESPACE + "selectOne", boardNo);
+	}
+	
+	/* 조회수 증가 */
+	public int countUpdate(int boardCount) {
+		return sql.update(NAMESPACE + "countUpdate", boardCount);
+	}
+
 }

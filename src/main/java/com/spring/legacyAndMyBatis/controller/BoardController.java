@@ -78,4 +78,26 @@ public class BoardController {
 		return "redirect:/board";
 		
 	}
+	
+	
+	/* 게시글 상세 조회 */
+	
+	@GetMapping("/detail")
+	public String detail(Model model, int boardNo) {
+		
+		BoardDTO board = boardService.selectDetail(boardNo);
+		
+		int boardCount = 0;
+		boardService.countUpdate(boardCount);
+		
+		model.addAttribute("board", board);
+		model.addAttribute("boardCount", boardCount);
+		
+		logger.info("[BoardController] Detail page");
+		logger.info(board.getBoardTitle());
+		logger.info(String.valueOf(board.getBoardCount()));
+		
+		return "detail";
+		
+	}
 }

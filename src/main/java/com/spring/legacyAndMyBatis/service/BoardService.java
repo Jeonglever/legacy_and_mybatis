@@ -23,4 +23,12 @@ public class BoardService {
 		
 	}
 
+	public BoardDTO selectDetail(int boardNo) {
+		return boardDao.selectOne(boardNo);
+	}
+
+	public void countUpdate(int boardCount) {
+		boardDao.countUpdate(boardCount);
+	}
+
 }
