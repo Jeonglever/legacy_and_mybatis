@@ -26,7 +26,7 @@
  	</select>
 	
  	<!-- 조회수 증가 ㅜㅜ -->
- 	<update id="countUpdate" parameterType="int">
+ 	<update id="countUpdate" parameterType="com.spring.legacyAndMyBatis.dto.BoardDTO">
  		UPDATE BOARD SET BOARDCOUNT = BOARDCOUNT+1 WHERE BOARDNO = #{boardNo}
  	</update>
  	
